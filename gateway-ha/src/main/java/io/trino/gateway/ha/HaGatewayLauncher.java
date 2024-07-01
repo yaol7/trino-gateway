@@ -45,6 +45,7 @@ public class HaGatewayLauncher
 
     private void start(List<Module> additionalModules, HaGatewayConfiguration configuration)
     {
+        logger.info("!!!!!!!!!!!!!! starting server !!!!!!!!!!!!!!");
         long startTime = System.nanoTime();
 
         ImmutableList.Builder<Module> modules = ImmutableList.builder();
@@ -103,6 +104,7 @@ public class HaGatewayLauncher
         if (args.length != 1) {
             throw new IllegalArgumentException("Expected exactly one argument (path of configuration file)");
         }
+        logger.info("!!!!!!!!!!!!! arg[0]: {}", args[0]);
         HaGatewayConfiguration haGatewayConfiguration = objectMapper.readValue(new File(args[0]), HaGatewayConfiguration.class);
         List<Module> modules = addModules(haGatewayConfiguration);
         new HaGatewayLauncher().start(modules, haGatewayConfiguration);
